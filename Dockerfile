@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 
 RUN dotnet clean ./TicTacToe-Microservice.sln
-RUN dotnet publish ./TicTacToe-Microservice --configuration Release -o ./publish
+RUN dotnet publish ./TicTacToeMS --configuration Release -o ./publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS run
 
@@ -14,4 +14,4 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
-CMD ["dotnet", "TicTacToe-Microservice.dll"]
+CMD ["dotnet", "TicTacToeMS.dll"]

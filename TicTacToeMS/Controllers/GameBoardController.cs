@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using TicTacToe_Microservice.Services;
+using TicTacToeMS.Services;
+using TicTacToeMS.Models;
 
 [ApiController]
 public class GameBoardController : ControllerBase
 {
-
     private readonly IGameBoardService _service;
     public GameBoardController(IGameBoardService service)
     {
@@ -12,8 +12,8 @@ public class GameBoardController : ControllerBase
     }
 
     [HttpPut("gameboard")]
-    public void CreateBoardState([FromBody] List<string> newBoard)
+    public async Task<Board> UpdateBoardState(Board newBoard)
     {
-        _service.updateBoardState(newBoard);
+        return await _service.updateBoardState(newBoard);
     }
 }
